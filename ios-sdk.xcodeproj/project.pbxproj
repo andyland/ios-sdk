@@ -1,0 +1,366 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		A121F3B617040C3C0089A145 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A121F3B517040C3C0089A145 /* UIKit.framework */; };
+		A121F3B817040C3C0089A145 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A121F3B717040C3C0089A145 /* Foundation.framework */; };
+		A121F3BA17040C3C0089A145 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A121F3B917040C3C0089A145 /* CoreGraphics.framework */; };
+		A121F3DF17040CC20089A145 /* TWAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A121F3DC17040CC20089A145 /* TWAppDelegate.m */; };
+		A121F3E017040CC20089A145 /* TWViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A121F3DE17040CC20089A145 /* TWViewController.m */; };
+		A121F3EE17040CCB0089A145 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A121F3E117040CCB0089A145 /* Default-568h@2x.png */; };
+		A121F3EF17040CCB0089A145 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = A121F3E217040CCB0089A145 /* Default.png */; };
+		A121F3F017040CCB0089A145 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A121F3E317040CCB0089A145 /* Default@2x.png */; };
+		A121F3F117040CCB0089A145 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A121F3E517040CCB0089A145 /* InfoPlist.strings */; };
+		A121F3F217040CCB0089A145 /* TWViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = A121F3E717040CCB0089A145 /* TWViewController_iPad.xib */; };
+		A121F3F317040CCB0089A145 /* TWViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = A121F3E917040CCB0089A145 /* TWViewController_iPhone.xib */; };
+		A121F3F417040CCB0089A145 /* ios-sdk-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A121F3EB17040CCB0089A145 /* ios-sdk-Info.plist */; };
+		A121F3F517040CCB0089A145 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A121F3ED17040CCB0089A145 /* main.m */; };
+		A121F40017040CE30089A145 /* NSString+TWUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A121F3F817040CE30089A145 /* NSString+TWUtils.m */; };
+		A121F40117040CE30089A145 /* TWAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A121F3FA17040CE30089A145 /* TWAPI.m */; };
+		A121F40217040CE30089A145 /* TWAPIContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A121F3FC17040CE30089A145 /* TWAPIContext.m */; };
+		A121F40317040CE30089A145 /* TWAPILyrics.m in Sources */ = {isa = PBXBuildFile; fileRef = A121F3FF17040CE30089A145 /* TWAPILyrics.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		A121F3B217040C3C0089A145 /* ios-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A121F3B517040C3C0089A145 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		A121F3B717040C3C0089A145 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A121F3B917040C3C0089A145 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		A121F3DB17040CC20089A145 /* TWAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAppDelegate.h; path = example/TWAppDelegate.h; sourceTree = SOURCE_ROOT; };
+		A121F3DC17040CC20089A145 /* TWAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAppDelegate.m; path = example/TWAppDelegate.m; sourceTree = SOURCE_ROOT; };
+		A121F3DD17040CC20089A145 /* TWViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWViewController.h; path = example/TWViewController.h; sourceTree = SOURCE_ROOT; };
+		A121F3DE17040CC20089A145 /* TWViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWViewController.m; path = example/TWViewController.m; sourceTree = SOURCE_ROOT; };
+		A121F3E117040CCB0089A145 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-568h@2x.png"; path = "example/Default-568h@2x.png"; sourceTree = SOURCE_ROOT; };
+		A121F3E217040CCB0089A145 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = example/Default.png; sourceTree = SOURCE_ROOT; };
+		A121F3E317040CCB0089A145 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "example/Default@2x.png"; sourceTree = SOURCE_ROOT; };
+		A121F3E617040CCB0089A145 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = InfoPlist.strings; sourceTree = "<group>"; };
+		A121F3E817040CCB0089A145 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = TWViewController_iPad.xib; sourceTree = "<group>"; };
+		A121F3EA17040CCB0089A145 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = TWViewController_iPhone.xib; sourceTree = "<group>"; };
+		A121F3EB17040CCB0089A145 /* ios-sdk-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "ios-sdk-Info.plist"; path = "example/ios-sdk-Info.plist"; sourceTree = SOURCE_ROOT; };
+		A121F3EC17040CCB0089A145 /* ios-sdk-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "ios-sdk-Prefix.pch"; path = "example/ios-sdk-Prefix.pch"; sourceTree = SOURCE_ROOT; };
+		A121F3ED17040CCB0089A145 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = example/main.m; sourceTree = SOURCE_ROOT; };
+		A121F3F717040CE30089A145 /* NSString+TWUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TWUtils.h"; path = "src/NSString+TWUtils.h"; sourceTree = "<group>"; };
+		A121F3F817040CE30089A145 /* NSString+TWUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TWUtils.m"; path = "src/NSString+TWUtils.m"; sourceTree = "<group>"; };
+		A121F3F917040CE30089A145 /* TWAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPI.h; path = src/TWAPI.h; sourceTree = "<group>"; };
+		A121F3FA17040CE30089A145 /* TWAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAPI.m; path = src/TWAPI.m; sourceTree = "<group>"; };
+		A121F3FB17040CE30089A145 /* TWAPIContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPIContext.h; path = src/TWAPIContext.h; sourceTree = "<group>"; };
+		A121F3FC17040CE30089A145 /* TWAPIContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAPIContext.m; path = src/TWAPIContext.m; sourceTree = "<group>"; };
+		A121F3FD17040CE30089A145 /* TWAPIDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPIDelegate.h; path = src/TWAPIDelegate.h; sourceTree = "<group>"; };
+		A121F3FE17040CE30089A145 /* TWAPILyrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPILyrics.h; path = src/TWAPILyrics.h; sourceTree = "<group>"; };
+		A121F3FF17040CE30089A145 /* TWAPILyrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAPILyrics.m; path = src/TWAPILyrics.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		A121F3AF17040C3C0089A145 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A121F3B617040C3C0089A145 /* UIKit.framework in Frameworks */,
+				A121F3B817040C3C0089A145 /* Foundation.framework in Frameworks */,
+				A121F3BA17040C3C0089A145 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		A121F3A917040C3C0089A145 = {
+			isa = PBXGroup;
+			children = (
+				A121F3F617040CD50089A145 /* src */,
+				A121F3BB17040C3C0089A145 /* example */,
+				A121F3B417040C3C0089A145 /* Frameworks */,
+				A121F3B317040C3C0089A145 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		A121F3B317040C3C0089A145 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A121F3B217040C3C0089A145 /* ios-sdk.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A121F3B417040C3C0089A145 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A121F3B517040C3C0089A145 /* UIKit.framework */,
+				A121F3B717040C3C0089A145 /* Foundation.framework */,
+				A121F3B917040C3C0089A145 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A121F3BB17040C3C0089A145 /* example */ = {
+			isa = PBXGroup;
+			children = (
+				A121F3DB17040CC20089A145 /* TWAppDelegate.h */,
+				A121F3DC17040CC20089A145 /* TWAppDelegate.m */,
+				A121F3DD17040CC20089A145 /* TWViewController.h */,
+				A121F3DE17040CC20089A145 /* TWViewController.m */,
+				A121F3BC17040C3D0089A145 /* Supporting Files */,
+			);
+			name = example;
+			path = "ios-sdk";
+			sourceTree = "<group>";
+		};
+		A121F3BC17040C3D0089A145 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A121F3E117040CCB0089A145 /* Default-568h@2x.png */,
+				A121F3E217040CCB0089A145 /* Default.png */,
+				A121F3E317040CCB0089A145 /* Default@2x.png */,
+				A121F3E417040CCB0089A145 /* en.lproj */,
+				A121F3EB17040CCB0089A145 /* ios-sdk-Info.plist */,
+				A121F3EC17040CCB0089A145 /* ios-sdk-Prefix.pch */,
+				A121F3ED17040CCB0089A145 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		A121F3E417040CCB0089A145 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				A121F3E517040CCB0089A145 /* InfoPlist.strings */,
+				A121F3E717040CCB0089A145 /* TWViewController_iPad.xib */,
+				A121F3E917040CCB0089A145 /* TWViewController_iPhone.xib */,
+			);
+			name = en.lproj;
+			path = example/en.lproj;
+			sourceTree = SOURCE_ROOT;
+		};
+		A121F3F617040CD50089A145 /* src */ = {
+			isa = PBXGroup;
+			children = (
+				A121F3F717040CE30089A145 /* NSString+TWUtils.h */,
+				A121F3F817040CE30089A145 /* NSString+TWUtils.m */,
+				A121F3F917040CE30089A145 /* TWAPI.h */,
+				A121F3FA17040CE30089A145 /* TWAPI.m */,
+				A121F3FB17040CE30089A145 /* TWAPIContext.h */,
+				A121F3FC17040CE30089A145 /* TWAPIContext.m */,
+				A121F3FD17040CE30089A145 /* TWAPIDelegate.h */,
+				A121F3FE17040CE30089A145 /* TWAPILyrics.h */,
+				A121F3FF17040CE30089A145 /* TWAPILyrics.m */,
+			);
+			name = src;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		A121F3B117040C3C0089A145 /* ios-sdk */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A121F3D817040C3D0089A145 /* Build configuration list for PBXNativeTarget "ios-sdk" */;
+			buildPhases = (
+				A121F3AE17040C3C0089A145 /* Sources */,
+				A121F3AF17040C3C0089A145 /* Frameworks */,
+				A121F3B017040C3C0089A145 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "ios-sdk";
+			productName = "ios-sdk";
+			productReference = A121F3B217040C3C0089A145 /* ios-sdk.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A121F3AA17040C3C0089A145 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = TW;
+				LastUpgradeCheck = 0460;
+				ORGANIZATIONNAME = "TuneWiki, Inc.";
+			};
+			buildConfigurationList = A121F3AD17040C3C0089A145 /* Build configuration list for PBXProject "ios-sdk" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = A121F3A917040C3C0089A145;
+			productRefGroup = A121F3B317040C3C0089A145 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				A121F3B117040C3C0089A145 /* ios-sdk */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		A121F3B017040C3C0089A145 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A121F3EE17040CCB0089A145 /* Default-568h@2x.png in Resources */,
+				A121F3EF17040CCB0089A145 /* Default.png in Resources */,
+				A121F3F017040CCB0089A145 /* Default@2x.png in Resources */,
+				A121F3F117040CCB0089A145 /* InfoPlist.strings in Resources */,
+				A121F3F217040CCB0089A145 /* TWViewController_iPad.xib in Resources */,
+				A121F3F317040CCB0089A145 /* TWViewController_iPhone.xib in Resources */,
+				A121F3F417040CCB0089A145 /* ios-sdk-Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		A121F3AE17040C3C0089A145 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A121F3DF17040CC20089A145 /* TWAppDelegate.m in Sources */,
+				A121F3E017040CC20089A145 /* TWViewController.m in Sources */,
+				A121F3F517040CCB0089A145 /* main.m in Sources */,
+				A121F40017040CE30089A145 /* NSString+TWUtils.m in Sources */,
+				A121F40117040CE30089A145 /* TWAPI.m in Sources */,
+				A121F40217040CE30089A145 /* TWAPIContext.m in Sources */,
+				A121F40317040CE30089A145 /* TWAPILyrics.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		A121F3E517040CCB0089A145 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A121F3E617040CCB0089A145 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A121F3E717040CCB0089A145 /* TWViewController_iPad.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A121F3E817040CCB0089A145 /* en */,
+			);
+			name = TWViewController_iPad.xib;
+			sourceTree = "<group>";
+		};
+		A121F3E917040CCB0089A145 /* TWViewController_iPhone.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A121F3EA17040CCB0089A145 /* en */,
+			);
+			name = TWViewController_iPhone.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		A121F3D617040C3D0089A145 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				"INFOPLIST_FILE[sdk=*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A121F3D717040C3D0089A145 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				"INFOPLIST_FILE[sdk=*]" = "";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		A121F3D917040C3D0089A145 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "example/ios-sdk-Prefix.pch";
+				INFOPLIST_FILE = "example/ios-sdk-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		A121F3DA17040C3D0089A145 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "example/ios-sdk-Prefix.pch";
+				INFOPLIST_FILE = "example/ios-sdk-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		A121F3AD17040C3C0089A145 /* Build configuration list for PBXProject "ios-sdk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A121F3D617040C3D0089A145 /* Debug */,
+				A121F3D717040C3D0089A145 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A121F3D817040C3D0089A145 /* Build configuration list for PBXNativeTarget "ios-sdk" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A121F3D917040C3D0089A145 /* Debug */,
+				A121F3DA17040C3D0089A145 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = A121F3AA17040C3C0089A145 /* Project object */;
+}
