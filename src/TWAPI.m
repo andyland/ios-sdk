@@ -177,7 +177,6 @@ static TWAPI *api = nil;
     [requestUrl appendFormat:@"&apiPass=%@", [self apiPassForHTTPMethod:method
                                                            resourcePath:resourcePath
                                                             paramValues:paramValues]];
-    NSLog(@"%@", requestUrl);
     return [NSURL URLWithString:requestUrl];
 }
 
@@ -188,7 +187,6 @@ static TWAPI *api = nil;
     for (NSString *value in paramValues) {
         [toHash appendString:value];
     }
-    NSLog(@"%@", toHash);
     return [toHash hmacStringWithSecret:self.apiSecret];
 }
 

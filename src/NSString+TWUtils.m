@@ -43,7 +43,6 @@
 }
 
 - (NSString*) hmacStringWithSecret:(NSString*) secret {
-    NSLog(@"%@", secret);
     CCHmacContext ctx;
     const char *key = [secret UTF8String];
     const char *str = [self UTF8String];
