@@ -23,17 +23,19 @@
 
 @interface TWAPILyrics : NSObject
 
-- (id) initWithJSON:(NSData*)json;
-
 @property (nonatomic, copy) NSArray *lines;
+
+- (id) initWithJSON:(NSData*)json;
 
 @end
 
-@interface TWAPILyricLine : NSObject
+#pragma -
 
-- (id) initWithText:(NSString*)text timestamp:(NSUInteger)timestamp;
+@interface TWAPILyricLine : NSObject
 
 @property (nonatomic, copy) NSString *text;
 @property (nonatomic, assign) NSUInteger timestamp;
+
+- (id) initWithText:(NSString*)text timestamp:(NSUInteger)timestamp;
 
 @end

@@ -55,6 +55,11 @@
     return self;
 }
 
+- (void) dealloc {
+    [_lines release];
+    [super dealloc];
+}
+
 @end
 
 #pragma mark -
@@ -70,6 +75,11 @@
         _timestamp = timestamp;
     }
     return self;
+}
+
+- (void) dealloc {
+    [_text release];
+    [super dealloc];
 }
 
 @end
