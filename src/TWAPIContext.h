@@ -25,7 +25,7 @@
 @interface TWAPIContext : NSObject
 
 @property (nonatomic, assign) id<TWAPIDelegate> delegate;
-@property (nonatomic, copy) NSString *method;
+@property (nonatomic, copy) NSString *resource;
 @property (nonatomic, retain) NSURLConnection *connection;
 @property (nonatomic, retain) NSMutableData *data;
 

@@ -22,10 +22,13 @@
 #import <Foundation/Foundation.h>
 #import "TWAPIContext.h"
 
-extern NSString * const TWAPIMethodLyrics;
+extern NSString * const TWAPIResourceLyrics;
 extern NSString * const TWAPIErrorDomain;
 
 @interface TWAPI : NSObject
+
+@property (nonatomic, copy) NSString *apiKey;
+@property (nonatomic, copy) NSString *apiSecret;
 
 +(TWAPI*) sharedApi;
 

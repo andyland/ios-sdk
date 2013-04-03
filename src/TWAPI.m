@@ -23,12 +23,11 @@
 #import "TWAPILyrics.h"
 #import "NSString+TWUtils.h"
 
-NSString * const TWAPIMethodLyrics = @"lyrics";
+NSString * const TWAPIResourceLyrics = @"lyrics";
 NSString * const TWAPIErrorDomain = @"TWAPIErrorDomain";
 
-NSString * const TWAPIScheme = @"http://";
-NSString * const TWAPIHost = @"betaapi.tunewiki.com";
-NSString * const TWAPIPathPrefix = @"tunewiki-public-api";
+NSString * const TWAPIScheme = @"http";
+NSString * const TWAPIHost = @"twapi.tunewiki.com";
 
 #pragma mark -
 
@@ -76,21 +75,23 @@ static TWAPI *api = nil;
 #pragma mark Public Methods
 
 - (TWAPIContext*) getLyricsForArtist:(NSString*) artist title:(NSString*)title delegate:(id<TWAPIDelegate>)delegate {
-    NSString *urlPath = [NSString stringWithFormat:@"%@%@/%@/%@/%@/%@",
-                                                   TWAPIScheme,
-                                                   TWAPIHost,
-                                                   TWAPIPathPrefix,
-                                                   TWAPIMethodLyrics,
-                                                   [artist encodeString],
-                                                   [title encodeString]];
-    NSLog(@"%@", urlPath);
-    NSURL *url = [NSURL URLWithString:urlPath];
+    NSString *resourcePath = [NSString stringWithFormat:@"/%@/%@/%@",
+                                                       TWAPIResourceLyrics,
+                                                       [artist urlEncodedString],
+                                                       [title urlEncodedString]];
+    NSURL *url = [self urlWithHTTPMethod:@"GET"
+                                  scheme:TWAPIScheme
+                                    host:TWAPIHost
+                            resourcePath:resourcePath
+                               getParams:nil
+                              postParams:nil];
+    
     NSURLRequest *request = [NSURLRequest requestWithURL:url
                                              cachePolicy:NSURLCacheStorageNotAllowed
                                          timeoutInterval:30];
 
     TWAPIContext *context = [[[TWAPIContext alloc] init] autorelease];
-    context.method = TWAPIMethodLyrics;
+    context.resource = TWAPIResourceLyrics;
     context.delegate = delegate;
     context.connection = [NSURLConnection connectionWithRequest:request
                                                        delegate:self];
@@ -130,7 +131,7 @@ static TWAPI *api = nil;
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     TWAPIContext *context = [self contextForConnection:connection];
 
-    if ([context.method isEqualToString:TWAPIMethodLyrics]) {
+    if ([context.resource isEqualToString:TWAPIResourceLyrics]) {
         TWAPILyrics *lyrics = [[[TWAPILyrics alloc] initWithJSON:context.data] autorelease];
         [context.delegate receivedResponse:lyrics context:context];
     }
@@ -147,6 +148,49 @@ static TWAPI *api = nil;
 
 #pragma mark -
 #pragma mark Helpers
+
+- (NSURL*) urlWithHTTPMethod:(NSString*)method
+                      scheme:(NSString*)scheme
+                        host:(NSString*)host
+                resourcePath:(NSString*)resourcePath
+                   getParams:(NSDictionary*)getParams
+                  postParams:(NSDictionary*)postParams {
+    NSMutableString *requestUrl = [NSMutableString stringWithFormat:@"%@://%@%@?", scheme, host, resourcePath];
+
+    [requestUrl appendFormat:@"apiKey=%@", self.apiKey];
+    
+    NSString *timestamp = [NSString stringWithFormat:@"%u", (NSUInteger)[[NSDate date] timeIntervalSince1970]];
+    [requestUrl appendFormat:@"&ts=%@", timestamp];
+    
+
+
+    NSMutableArray *paramValues = [NSMutableArray arrayWithObjects:self.apiKey, timestamp, nil];
+    
+    for (NSString *key in getParams) {
+        NSString *value = [getParams valueForKey:key];
+        [paramValues addObject:key];
+        [requestUrl appendFormat:@"&%@=%@", key, value];
+    }
+    for (NSString *key in postParams) {
+        [paramValues addObject:[postParams objectForKey:key]];
+    }
+    [requestUrl appendFormat:@"&apiPass=%@", [self apiPassForHTTPMethod:method
+                                                           resourcePath:resourcePath
+                                                            paramValues:paramValues]];
+    NSLog(@"%@", requestUrl);
+    return [NSURL URLWithString:requestUrl];
+}
+
+- (NSString*) apiPassForHTTPMethod:(NSString*)method
+                      resourcePath:(NSString*)resourcePath
+                       paramValues:(NSArray*)paramValues {
+    NSMutableString *toHash = [NSMutableString stringWithFormat:@"%@\\n%@\\n", method, resourcePath];
+    for (NSString *value in paramValues) {
+        [toHash appendString:value];
+    }
+    NSLog(@"%@", toHash);
+    return [toHash hmacStringWithSecret:self.apiSecret];
+}
 
 - (void) clearContext:(TWAPIContext*)context {
     [self.requests removeObject:context];

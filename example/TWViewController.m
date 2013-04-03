@@ -29,6 +29,8 @@
 
 @end
 
+#pragma -
+
 @implementation TWViewController
 
 @synthesize context = _context;
@@ -36,10 +38,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.context = [[TWAPI sharedApi] getLyricsForArtist:@"Of Montreal"
-                                                   title:@"An Eluardian Instance"
-                                                delegate:self];
-    
+
+    TWAPI *twapi = [TWAPI sharedApi];
+    twapi.apiKey = @"YOUR_API_KEY";
+    twapi.apiSecret = @"YOUR_API_SECRET";
+    self.context = [twapi getLyricsForArtist:@"Of Montreal"
+                                       title:@"An Eluardian Instance"
+                                    delegate:self];
 }
 
 - (void) dealloc {

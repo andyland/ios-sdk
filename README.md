@@ -9,9 +9,15 @@ Copy all the files under src into your project
 
 Example usage:
 
-    [[TWAPI sharedApi] getLyricsForArtist:@"Of Montreal"
-                                    title:@"An Eluardian Instance"
-                                 delegate:self];
+    //Set your api key and secret
+    TWAPI *api = [TWAPI sharedApi];
+    api.apiKey = @"YOUR_API_KEY";
+    api.apiSecret = @"YOU_API_SECRET";
+
+    //Get some lyrics
+    [api getLyricsForArtist:@"Of Montreal"
+                      title:@"An Eluardian Instance"
+                   delegate:self];
                                  
 Your delegate should implmement the following methods:
 
@@ -24,7 +30,6 @@ A successful request will receive an instance of `TWAPILyrics` back.
 **TODO**
 
 1. OAuth Signed Requests
-1. APIKey Signed Requests
 1. POST actions for editing / syncing lyrics
 
 ## License

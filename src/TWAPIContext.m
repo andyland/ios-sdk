@@ -25,7 +25,7 @@
 
 @synthesize delegate = _delegate;
 @synthesize connection = _connection;
-@synthesize method = _method;
+@synthesize resource = _resource;
 @synthesize data = _data;
 
 @end
