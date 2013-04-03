@@ -44,6 +44,7 @@
     twapi.apiSecret = @"YOUR_API_SECRET";
     self.context = [twapi getLyricsForArtist:@"Of Montreal"
                                        title:@"An Eluardian Instance"
+                                    language:@"en-US"
                                     delegate:self];
 }
 

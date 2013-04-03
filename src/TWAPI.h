@@ -32,7 +32,21 @@ extern NSString * const TWAPIErrorDomain;
 
 +(TWAPI*) sharedApi;
 
-- (TWAPIContext*) getLyricsForArtist:(NSString*) artist title:(NSString*)title delegate:(id<TWAPIDelegate>)delegate;
+/*
+ * Requests Lyrics for the artist & title, callback will be asynchronous to
+ * the delegate passed in and on the same thread this method is called.
+ * 
+ * Language is formed with the format of the ISO 639-1 language code concatenated
+ * optionally concatented with a hyphen and the ISO 3166-1 country code
+ * Thus, valid values would be @"en", @"zh-CN", @"es-BR", @"es", etc.
+ *
+ * Pass nil for language to get lyrics in the song's native language
+ */
+- (TWAPIContext*) getLyricsForArtist:(NSString*) artist
+                               title:(NSString*) title
+                            language:(NSString*) language
+                            delegate:(id<TWAPIDelegate>) delegate;
+
 - (void) cancelRequest:(TWAPIContext*)context;
 
 @end

@@ -74,7 +74,10 @@ static TWAPI *api = nil;
 #pragma mark -
 #pragma mark Public Methods
 
-- (TWAPIContext*) getLyricsForArtist:(NSString*) artist title:(NSString*)title delegate:(id<TWAPIDelegate>)delegate {
+- (TWAPIContext*) getLyricsForArtist:(NSString*) artist
+                               title:(NSString*)title
+                              language:(NSString *)language
+                            delegate:(id<TWAPIDelegate>)delegate {
     NSString *resourcePath = [NSString stringWithFormat:@"/%@/%@/%@",
                                                        TWAPIResourceLyrics,
                                                        [artist urlEncodedString],
@@ -86,9 +89,13 @@ static TWAPI *api = nil;
                                getParams:nil
                               postParams:nil];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:url
-                                             cachePolicy:NSURLCacheStorageNotAllowed
-                                         timeoutInterval:30];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
+                                                           cachePolicy:NSURLCacheStorageNotAllowed
+                                                       timeoutInterval:30];
+
+    if (language) {
+        [request setValue:language forHTTPHeaderField:@"Accept-Language"];
+    }
 
     TWAPIContext *context = [[[TWAPIContext alloc] init] autorelease];
     context.resource = TWAPIResourceLyrics;
@@ -183,7 +190,7 @@ static TWAPI *api = nil;
 - (NSString*) apiPassForHTTPMethod:(NSString*)method
                       resourcePath:(NSString*)resourcePath
                        paramValues:(NSArray*)paramValues {
-    NSMutableString *toHash = [NSMutableString stringWithFormat:@"%@\\n%@\\n", method, resourcePath];
+    NSMutableString *toHash = [NSMutableString string];//]WithFormat:@"%@\\n%@\\n", method, resourcePath];
     for (NSString *value in paramValues) {
         [toHash appendString:value];
     }
