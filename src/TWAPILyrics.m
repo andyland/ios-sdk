@@ -21,42 +21,107 @@
 
 #import "TWAPILyrics.h"
 
+@interface TWAPILyrics()
+
+- (BOOL) hasValidSync;
+
+@end
+
+#pragma mark -
 
 @implementation TWAPILyrics
 
 @synthesize lines = _lines;
+@synthesize artist = _artist;
+@synthesize title = _title;
+@synthesize language = _language;
 
-- (id) initWithJSON:(NSData*)json {
-    if (self = [super init]) {
-        NSError *error;
-        id object = [NSJSONSerialization JSONObjectWithData:json
-                                                    options:0
-                                                      error:&error];
-        if ([object isKindOfClass:[NSDictionary class]]) {
-            NSDictionary *dict = (NSDictionary*) object;
-            NSMutableArray *linesArray = [NSMutableArray array];
+#pragma mark -
+#pragma mark Public Methods
 
-            NSArray *keys = [dict allKeys];
-            keys = [keys sortedArrayUsingComparator:^NSComparisonResult(id obj1, id obj2) {
-                return [obj1 compare:obj2];
-            }];
++ (TWAPILyrics*) lyricsWithJSON:(NSData*)json {
+    TWAPILyrics *lyrics = [[TWAPILyrics new] autorelease];
+    
+    NSError *error;
+    id object = [NSJSONSerialization JSONObjectWithData:json
+                                                options:0
+                                                  error:&error];
+    if ([object isKindOfClass:[NSDictionary class]]) {
+        NSDictionary *dict = (NSDictionary*) object;
+        NSMutableArray *linesArray = [NSMutableArray array];
 
-            for (NSString *key in keys) {
-                NSDictionary *lineDict = [dict valueForKey:key];
-                TWAPILyricLine *line = [[[TWAPILyricLine alloc] initWithText:[lineDict valueForKey:@"text"]
-                                                                   timestamp:[[lineDict valueForKey:@"ts"] unsignedIntValue]] autorelease];
-                [linesArray addObject:line];
-            }
-            _lines = [linesArray copy];
-        } else {
-            _lines = [NSArray new];
+        for (NSUInteger i = 0, count = [dict count]; i < count; i++) {
+            NSDictionary *lineDict = [dict valueForKey:[NSString stringWithFormat:@"%u", 1 + i]];
+            TWAPILyricLine *line = [[[TWAPILyricLine alloc] initWithText:[lineDict valueForKey:@"text"]
+                                                               timestamp:[[lineDict valueForKey:@"ts"] doubleValue] / 1000] autorelease];
+            [linesArray addObject:line];
         }
+        lyrics.lines = [NSArray arrayWithArray:linesArray];
+    } else {
+        lyrics.lines = [NSArray array];
     }
-    return self;
+    return lyrics;
+}
+
++ (TWAPILyrics*) lyrics {
+    return [[TWAPILyrics new] autorelease];
+}
+
+- (NSData*) jsonData {
+    BOOL hasValidSync = [self hasValidSync];
+    NSMutableDictionary *topLevel = [NSMutableDictionary dictionary];
+    NSDictionary *lineDict;
+    TWAPILyricLine *line;
+
+    for (NSUInteger i = 0, count = [self.lines count]; i < count; i++) {
+        line = [self.lines objectAtIndex:i];
+        if (hasValidSync) {
+            NSString *timestamp = [NSString stringWithFormat:@"%u", (NSUInteger)(line.timestamp / 1000)];
+            lineDict = [NSDictionary dictionaryWithObjectsAndKeys:line.text, @"text",
+                                                                  timestamp, @"ts", nil];
+        } else {
+            lineDict = [NSDictionary dictionaryWithObjectsAndKeys:line.text,@"text", nil];
+        }
+        [topLevel setValue:lineDict
+                    forKey:[NSString stringWithFormat:@"%u", i]];
+    }
+
+    NSError *error;
+    return [NSJSONSerialization dataWithJSONObject:topLevel
+                                           options:0
+                                             error:&error];
+}
+
+
+#pragma mark -
+#pragma mark Helpers
+
+/*
+ * Fairly simple check for validity here, just making sure
+ * the lines are synced in order
+ */
+- (BOOL) hasValidSync {
+    BOOL valid = YES;
+    
+    NSTimeInterval lastTimestamp = 0;
+
+    for (TWAPILyricLine *line in self.lines) {
+        NSTimeInterval thisTimestamp = line.timestamp;
+        if (thisTimestamp <= lastTimestamp) {
+            valid = NO;
+            break;
+        }
+        lastTimestamp = thisTimestamp;
+    }
+
+    return valid;
 }
 
 - (void) dealloc {
     [_lines release];
+    [_artist release];
+    [_title release];
+    [_language release];
     [super dealloc];
 }
 
@@ -69,7 +134,7 @@
 @synthesize text = _text;
 @synthesize timestamp = _timestamp;
 
-- (id) initWithText:(NSString*)text timestamp:(NSUInteger)timestamp {
+- (id) initWithText:(NSString*)text timestamp:(NSTimeInterval)timestamp {
     if (self = [super init]) {
         _text = [text copy];
         _timestamp = timestamp;

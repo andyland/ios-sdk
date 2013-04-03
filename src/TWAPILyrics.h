@@ -23,19 +23,38 @@
 
 @interface TWAPILyrics : NSObject
 
+@property (nonatomic, copy) NSString *artist;
+@property (nonatomic, copy) NSString *title;
+
+/*
+ * Language is formed with the format of the ISO 639-1 language code concatenated
+ * optionally concatented with a hyphen and the ISO 3166-1 country code
+ * Thus, valid values would be @"en", @"zh-CN", @"es-BR", @"es", etc.
+ *
+ * nil signifies the song's native language
+ */
+@property (nonatomic, copy) NSString *language;
+
 @property (nonatomic, copy) NSArray *lines;
 
-- (id) initWithJSON:(NSData*)json;
++ (TWAPILyrics*) lyrics;
++ (TWAPILyrics*) lyricsWithJSON:(NSData*)json;
+
+- (NSData*) jsonData;
 
 @end
 
-#pragma -
+#pragma mark -
 
 @interface TWAPILyricLine : NSObject
 
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, assign) NSUInteger timestamp;
 
-- (id) initWithText:(NSString*)text timestamp:(NSUInteger)timestamp;
+/*
+ * Time interval since beginning of the song
+ */
+@property (nonatomic, assign) NSTimeInterval timestamp;
+
+- (id) initWithText:(NSString*)text timestamp:(NSTimeInterval)timestamp;
 
 @end

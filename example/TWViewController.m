@@ -20,48 +20,54 @@
 //
 
 #import "TWViewController.h"
+#import "TWAPIGetLyricsRequest.h"
 #import "TWAPILyrics.h"
 
 @interface TWViewController ()
 
-@property (nonatomic, retain) TWAPIContext *context;
+@property (nonatomic, retain) TWAPIGetLyricsRequest *request;
 @property (nonatomic, retain) TWAPILyrics *lyrics;
 
 @end
 
-#pragma -
+#pragma mark -
 
 @implementation TWViewController
 
-@synthesize context = _context;
+@synthesize request = _request;
 @synthesize lyrics = _lyrics;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
-    TWAPI *twapi = [TWAPI sharedApi];
-    twapi.apiKey = @"YOUR_API_KEY";
-    twapi.apiSecret = @"YOUR_API_SECRET";
-    self.context = [twapi getLyricsForArtist:@"Of Montreal"
-                                       title:@"An Eluardian Instance"
-                                    language:@"en-US"
-                                    delegate:self];
+    self.request = [TWAPIGetLyricsRequest getLyricsRequestForArtist:@"Of Montreal"
+                                                              title:@"An Eluardian Instance"
+                                                           language:@"en-US"
+                                                           delegate:self];
+    [self.request start];
+    //twapi.apiKey = @"27debafffd84567dea20a504106a9577";
+    //twapi.apiSecret = @"83fc6907ba1d1903ecbc694f1d6c931d";
 }
 
 - (void) dealloc {
-    [[TWAPI sharedApi] cancelRequest:_context];
-    [_context release];
+    [self.request cancel];
+    [_request release];
     [super dealloc];
 }
 
-- (void) receivedResponse:(id)response context:(TWAPIContext*)context {
+#pragma mark -
+#pragma mark TWAPIDelegate Support
+
+- (void) receivedResponse:(id)response {
     self.lyrics = response;
     [self.tableView reloadData];
 }
 
-- (void) failedWithContext:(TWAPIContext*)context error:(NSError*)error {
+- (void) failedWithError:(NSError*)error {
     NSLog(@"Error code: %d", error.code);
 }
+
+#pragma mark -
+#pragma mark TableViewDelegate Support
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)theTableView {
     return 1;
@@ -84,7 +90,7 @@
     TWAPILyricLine *line = [self.lyrics.lines objectAtIndex:indexPath.row];
 
     cell.textLabel.text = [line text];
-    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", [line timestamp]];
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%d", (int)[line timestamp]];
     
     return cell;
 }

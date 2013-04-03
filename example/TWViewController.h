@@ -20,7 +20,8 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "TWAPI.h"
+
+#import "TWAPIDelegate.h"
 
 @interface TWViewController : UITableViewController<TWAPIDelegate>
 

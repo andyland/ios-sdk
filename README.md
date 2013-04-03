@@ -5,24 +5,25 @@ This SDK aims to help php developers get easier access to the [TuneWiki API](htt
 Supports iOS 5+
 
 ##Getting Started
-Copy all the files under src into your project
+Copy all the files under src into your project and define your API key and secret in TWAPI.h
 
 Example usage:
 
-    //Set your api key and secret
-    TWAPI *api = [TWAPI sharedApi];
-    api.apiKey = @"YOUR_API_KEY";
-    api.apiSecret = @"YOU_API_SECRET";
-
-    //Get some lyrics
-    [api getLyricsForArtist:@"Of Montreal"
-                      title:@"An Eluardian Instance"
-                   delegate:self];
+    // Create a request
+    TWAPIRequest *request = [TWAPIGetLyricsRequestgetLyricsRequestForArtist:@"Of Montreal"
+                                                                      title:@"An Eluardian Instance"
+                                                                   language:@"en-US"
+                                                                   delegate:self];
+    // Start it
+    [request start];
+    
+    // If you need to cancel it
+    [request cancel];
                                  
 Your delegate should implmement the following methods:
 
-    - (void) receivedResponse:(id)response context:(TWAPIContext*)context;
-    - (void) failedWithContext:(TWAPIContext*)context error:(NSError*)error;
+    - (void) receivedResponse:(id)response;
+    - (void) failedWithError:(NSError*)error;
     
 A successful request will receive an instance of `TWAPILyrics` back.
 

@@ -1,5 +1,5 @@
 //
-//  TWAPIContext.m
+//  TWAPI.h
 //  SDK
 //
 //  Created by Andrew McSherry on 3/27/13.
@@ -19,13 +19,31 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "TWAPIContext.h"
+#import <Foundation/Foundation.h>
+#import "TWAPIDelegate.h"
 
-@implementation TWAPIContext
+@interface TWAPIRequest : NSObject
 
-@synthesize delegate = _delegate;
-@synthesize connection = _connection;
-@synthesize resource = _resource;
-@synthesize data = _data;
+@property (nonatomic, retain) NSURLConnection *connection;
+@property (nonatomic, assign) id<TWAPIDelegate> delegate;
+@property (nonatomic, retain) NSMutableData *data;
+
+- (id) initWithDelegate:(id<TWAPIDelegate>)delegate;
+
+- (void) start;
+
+- (void) cancel;
+
+#pragma mark -
+#pragma mark Methods for Subclasss to implement
+
+// Required
+- (NSString*) httpMethod;
+- (NSString*) resourcePath;
+
+// Optional
+- (NSDictionary*) getParams;
+- (NSDictionary*) postParams;
+- (NSDictionary*) headers;
 
 @end

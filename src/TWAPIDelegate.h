@@ -21,11 +21,9 @@
 
 #import <Foundation/Foundation.h>
 
-@class TWAPIContext;
-
 @protocol TWAPIDelegate <NSObject>
 
-- (void) receivedResponse:(id)response context:(TWAPIContext*)context;
-- (void) failedWithContext:(TWAPIContext*)context error:(NSError*)error;
+- (void) receivedResponse:(id)response;
+- (void) failedWithError:(NSError*)error;
 
 @end

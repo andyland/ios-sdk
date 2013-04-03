@@ -21,9 +21,11 @@
 		A121F3F417040CCB0089A145 /* ios-sdk-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = A121F3EB17040CCB0089A145 /* ios-sdk-Info.plist */; };
 		A121F3F517040CCB0089A145 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A121F3ED17040CCB0089A145 /* main.m */; };
 		A121F40017040CE30089A145 /* NSString+TWUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = A121F3F817040CE30089A145 /* NSString+TWUtils.m */; };
-		A121F40117040CE30089A145 /* TWAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = A121F3FA17040CE30089A145 /* TWAPI.m */; };
-		A121F40217040CE30089A145 /* TWAPIContext.m in Sources */ = {isa = PBXBuildFile; fileRef = A121F3FC17040CE30089A145 /* TWAPIContext.m */; };
+		A121F40117040CE30089A145 /* TWAPIRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A121F3FA17040CE30089A145 /* TWAPIRequest.m */; };
 		A121F40317040CE30089A145 /* TWAPILyrics.m in Sources */ = {isa = PBXBuildFile; fileRef = A121F3FF17040CE30089A145 /* TWAPILyrics.m */; };
+		A131180F170C1FFB009EF5A8 /* TWAPILyricRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A131180E170C1FFB009EF5A8 /* TWAPILyricRequest.m */; };
+		A1311815170C2BEA009EF5A8 /* TWAPIGetLyricsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A1311814170C2BEA009EF5A8 /* TWAPIGetLyricsRequest.m */; };
+		A1311818170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A1311817170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -46,13 +48,18 @@
 		A121F3ED17040CCB0089A145 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = example/main.m; sourceTree = SOURCE_ROOT; };
 		A121F3F717040CE30089A145 /* NSString+TWUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "NSString+TWUtils.h"; path = "src/NSString+TWUtils.h"; sourceTree = "<group>"; };
 		A121F3F817040CE30089A145 /* NSString+TWUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "NSString+TWUtils.m"; path = "src/NSString+TWUtils.m"; sourceTree = "<group>"; };
-		A121F3F917040CE30089A145 /* TWAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPI.h; path = src/TWAPI.h; sourceTree = "<group>"; };
-		A121F3FA17040CE30089A145 /* TWAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAPI.m; path = src/TWAPI.m; sourceTree = "<group>"; };
-		A121F3FB17040CE30089A145 /* TWAPIContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPIContext.h; path = src/TWAPIContext.h; sourceTree = "<group>"; };
-		A121F3FC17040CE30089A145 /* TWAPIContext.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAPIContext.m; path = src/TWAPIContext.m; sourceTree = "<group>"; };
+		A121F3F917040CE30089A145 /* TWAPIRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPIRequest.h; path = src/TWAPIRequest.h; sourceTree = "<group>"; };
+		A121F3FA17040CE30089A145 /* TWAPIRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAPIRequest.m; path = src/TWAPIRequest.m; sourceTree = "<group>"; };
 		A121F3FD17040CE30089A145 /* TWAPIDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPIDelegate.h; path = src/TWAPIDelegate.h; sourceTree = "<group>"; };
 		A121F3FE17040CE30089A145 /* TWAPILyrics.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPILyrics.h; path = src/TWAPILyrics.h; sourceTree = "<group>"; };
 		A121F3FF17040CE30089A145 /* TWAPILyrics.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAPILyrics.m; path = src/TWAPILyrics.m; sourceTree = "<group>"; };
+		A131180D170C1FFB009EF5A8 /* TWAPILyricRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPILyricRequest.h; path = src/TWAPILyricRequest.h; sourceTree = "<group>"; };
+		A131180E170C1FFB009EF5A8 /* TWAPILyricRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAPILyricRequest.m; path = src/TWAPILyricRequest.m; sourceTree = "<group>"; };
+		A1311813170C2BEA009EF5A8 /* TWAPIGetLyricsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPIGetLyricsRequest.h; path = src/TWAPIGetLyricsRequest.h; sourceTree = "<group>"; };
+		A1311814170C2BEA009EF5A8 /* TWAPIGetLyricsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAPIGetLyricsRequest.m; path = src/TWAPIGetLyricsRequest.m; sourceTree = "<group>"; };
+		A1311816170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPIPostLyricsRequest.h; path = src/TWAPIPostLyricsRequest.h; sourceTree = "<group>"; };
+		A1311817170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAPIPostLyricsRequest.m; path = src/TWAPIPostLyricsRequest.m; sourceTree = "<group>"; };
+		A1311819170C3150009EF5A8 /* TWAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPI.h; path = src/TWAPI.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,13 +147,18 @@
 			children = (
 				A121F3F717040CE30089A145 /* NSString+TWUtils.h */,
 				A121F3F817040CE30089A145 /* NSString+TWUtils.m */,
-				A121F3F917040CE30089A145 /* TWAPI.h */,
-				A121F3FA17040CE30089A145 /* TWAPI.m */,
-				A121F3FB17040CE30089A145 /* TWAPIContext.h */,
-				A121F3FC17040CE30089A145 /* TWAPIContext.m */,
+				A121F3F917040CE30089A145 /* TWAPIRequest.h */,
+				A121F3FA17040CE30089A145 /* TWAPIRequest.m */,
 				A121F3FD17040CE30089A145 /* TWAPIDelegate.h */,
 				A121F3FE17040CE30089A145 /* TWAPILyrics.h */,
 				A121F3FF17040CE30089A145 /* TWAPILyrics.m */,
+				A131180D170C1FFB009EF5A8 /* TWAPILyricRequest.h */,
+				A131180E170C1FFB009EF5A8 /* TWAPILyricRequest.m */,
+				A1311813170C2BEA009EF5A8 /* TWAPIGetLyricsRequest.h */,
+				A1311814170C2BEA009EF5A8 /* TWAPIGetLyricsRequest.m */,
+				A1311816170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.h */,
+				A1311817170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.m */,
+				A1311819170C3150009EF5A8 /* TWAPI.h */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -224,9 +236,11 @@
 				A121F3E017040CC20089A145 /* TWViewController.m in Sources */,
 				A121F3F517040CCB0089A145 /* main.m in Sources */,
 				A121F40017040CE30089A145 /* NSString+TWUtils.m in Sources */,
-				A121F40117040CE30089A145 /* TWAPI.m in Sources */,
-				A121F40217040CE30089A145 /* TWAPIContext.m in Sources */,
+				A121F40117040CE30089A145 /* TWAPIRequest.m in Sources */,
 				A121F40317040CE30089A145 /* TWAPILyrics.m in Sources */,
+				A131180F170C1FFB009EF5A8 /* TWAPILyricRequest.m in Sources */,
+				A1311815170C2BEA009EF5A8 /* TWAPIGetLyricsRequest.m in Sources */,
+				A1311818170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -359,6 +373,7 @@
 				A121F3DA17040C3D0089A145 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

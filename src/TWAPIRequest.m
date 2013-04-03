@@ -19,99 +19,67 @@
 //  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //
 
-#import "TWAPI.h"
-#import "TWAPILyrics.h"
+#import "TWAPIRequest.h"
 #import "NSString+TWUtils.h"
-
-NSString * const TWAPIResourceLyrics = @"lyrics";
-NSString * const TWAPIErrorDomain = @"TWAPIErrorDomain";
-
-NSString * const TWAPIScheme = @"http";
-NSString * const TWAPIHost = @"twapi.tunewiki.com";
+#import "TWAPI.h"
 
 #pragma mark -
 
-@interface TWAPI()
+@interface TWAPIRequest()
 
-@property (nonatomic, retain) NSMutableArray *requests;
 
-- (TWAPIContext*) contextForConnection:(NSURLConnection*)connection;
-- (void) clearContext:(TWAPIContext*)context;
+#pragma mark -
+
+- (NSString*) apiPassForHTTPMethod:(NSString*)method
+                      resourcePath:(NSString*)resourcePath
+                       paramValues:(NSArray*)paramValues;
+
+- (NSURL*) urlWithHTTPMethod:(NSString*)method
+                      scheme:(NSString*)scheme
+                        host:(NSString*)host
+                resourcePath:(NSString*)resourcePath
+                   getParams:(NSDictionary*)getParams
+                  postParams:(NSDictionary*)postParams;
 
 @end
 
 #pragma mark -
 
-@implementation TWAPI
+@implementation TWAPIRequest
 
-@synthesize requests = _requests;
-
-#pragma mark -
-#pragma mark Singleton Support
-
-static TWAPI *api = nil;
-
-+(TWAPI*) sharedApi {
-    @synchronized(self) {
-		if (api == nil) {
-            api = [[self alloc] init];
-		}
-	}
-	return api;
-}
-
-- (id) init {
-    if (self = [super init]) {
-        _requests = [[NSMutableArray alloc] init];
-    }
-    return self;
-}
-
-- (oneway void) release { }
-
-- (id) autorelease { return self; }
+@synthesize connection = _connection;
+@synthesize delegate = _delegate;
+@synthesize data = _data;
 
 #pragma mark -
 #pragma mark Public Methods
 
-- (TWAPIContext*) getLyricsForArtist:(NSString*) artist
-                               title:(NSString*)title
-                              language:(NSString *)language
-                            delegate:(id<TWAPIDelegate>)delegate {
-    NSString *resourcePath = [NSString stringWithFormat:@"/%@/%@/%@",
-                                                       TWAPIResourceLyrics,
-                                                       [artist urlEncodedString],
-                                                       [title urlEncodedString]];
-    NSURL *url = [self urlWithHTTPMethod:@"GET"
-                                  scheme:TWAPIScheme
-                                    host:TWAPIHost
-                            resourcePath:resourcePath
-                               getParams:nil
-                              postParams:nil];
-    
-    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url
-                                                           cachePolicy:NSURLCacheStorageNotAllowed
-                                                       timeoutInterval:30];
-
-    if (language) {
-        [request setValue:language forHTTPHeaderField:@"Accept-Language"];
+- (id) initWithDelegate:(id<TWAPIDelegate>)delegate {
+    if (self = [super init]) {
+        _delegate = delegate;
     }
-
-    TWAPIContext *context = [[[TWAPIContext alloc] init] autorelease];
-    context.resource = TWAPIResourceLyrics;
-    context.delegate = delegate;
-    context.connection = [NSURLConnection connectionWithRequest:request
-                                                       delegate:self];
-
-    [self.requests addObject:context];
-
-    return context;
+    return self;
 }
 
-- (void) cancelRequest:(TWAPIContext*)context {
-    context.delegate = nil;
-    [context.connection cancel];
-    [self clearContext:context];
+- (void) start {
+    NSURL *url = [self urlWithHTTPMethod:self.httpMethod
+                                  scheme:TWAPIScheme
+                                    host:TWAPIHost
+                            resourcePath:self.resourcePath
+                               getParams:self.getParams
+                              postParams:self.postParams];
+
+    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    
+    self.connection = [NSURLConnection connectionWithRequest:request
+                                                    delegate:self];
+    [self.connection start];
+}
+
+- (void) cancel {
+    self.delegate = nil;
+    [self.connection cancel];
+    self.connection = nil;
 }
 
 #pragma mark -
@@ -122,34 +90,21 @@ static TWAPI *api = nil;
         NSHTTPURLResponse *httpResponse = (NSHTTPURLResponse *) response;
         int status = [httpResponse statusCode];
 
-        TWAPIContext *context = [self contextForConnection:connection];
-
         if (!((status >= 200) && (status < 300))) {
             NSError *error = [NSError errorWithDomain:TWAPIErrorDomain
                                                  code:status
                                              userInfo:nil];
-            [context.delegate failedWithContext:context
-                                          error:error];
-            [self clearContext:context];
+            [self.delegate failedWithError:error];
+            self.delegate = nil;
         }
     }
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
-    TWAPIContext *context = [self contextForConnection:connection];
-
-    if ([context.resource isEqualToString:TWAPIResourceLyrics]) {
-        TWAPILyrics *lyrics = [[[TWAPILyrics alloc] initWithJSON:context.data] autorelease];
-        [context.delegate receivedResponse:lyrics context:context];
-    }
-}
-
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)data {
-    TWAPIContext *context = [self contextForConnection:connection];
-    if (nil == context.data) {
-        context.data = [[data mutableCopy] autorelease];
+    if (self.data) {
+        [self.data appendData:data];
     } else {
-        [context.data appendData:data];
+        self.data = [[data mutableCopy] autorelease];
     }
 }
 
@@ -164,14 +119,14 @@ static TWAPI *api = nil;
                   postParams:(NSDictionary*)postParams {
     NSMutableString *requestUrl = [NSMutableString stringWithFormat:@"%@://%@%@?", scheme, host, resourcePath];
 
-    [requestUrl appendFormat:@"apiKey=%@", self.apiKey];
+    [requestUrl appendFormat:@"apiKey=%@", TWAPIKey];
     
     NSString *timestamp = [NSString stringWithFormat:@"%u", (NSUInteger)[[NSDate date] timeIntervalSince1970]];
     [requestUrl appendFormat:@"&ts=%@", timestamp];
     
 
 
-    NSMutableArray *paramValues = [NSMutableArray arrayWithObjects:self.apiKey, timestamp, nil];
+    NSMutableArray *paramValues = [NSMutableArray arrayWithObjects:TWAPIKey, timestamp, nil];
     
     for (NSString *key in getParams) {
         NSString *value = [getParams valueForKey:key];
@@ -194,20 +149,37 @@ static TWAPI *api = nil;
     for (NSString *value in paramValues) {
         [toHash appendString:value];
     }
-    return [toHash hmacStringWithSecret:self.apiSecret];
+    return [toHash hmacStringWithSecret:TWAPISecret];
 }
 
-- (void) clearContext:(TWAPIContext*)context {
-    [self.requests removeObject:context];
-}
+#pragma mark -
+#pragma mark Subclass Defaults
 
-- (TWAPIContext*) contextForConnection:(NSURLConnection*)connection {
-    for (TWAPIContext *context in self.requests) {
-        if (context.connection == connection) {
-            return context;
-        }
-    }
+
+- (NSDictionary*) getParams {
     return nil;
+}
+
+- (NSDictionary*) postParams {
+    return nil;
+}
+
+- (NSDictionary*) headers {
+    return nil;
+}
+
+- (NSString*) httpMethod {
+    return nil;
+}
+
+-(NSString*) resourcePath {
+    return nil;
+}
+
+- (void) dealloc {
+    [_connection release];
+    [_data release];
+    [super dealloc];
 }
 
 @end
