@@ -35,7 +35,7 @@
                                       [self.title urlEncodedString]];
 }
 
-- (NSDictionary*) headers {
+- (NSDictionary*) httpHeaders {
     if (self.language) {
         return [NSDictionary dictionaryWithObject:self.language forKey:@"Accept-Language"];
     }

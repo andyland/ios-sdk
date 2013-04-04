@@ -41,9 +41,12 @@
 - (NSString*) httpMethod;
 - (NSString*) resourcePath;
 
+// Required for POST
+- (NSData*) postBody;
+
 // Optional
 - (NSDictionary*) getParams;
 - (NSDictionary*) postParams;
-- (NSDictionary*) headers;
+- (NSDictionary*) httpHeaders;
 
 @end

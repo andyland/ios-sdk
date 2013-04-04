@@ -62,14 +62,28 @@
 }
 
 - (void) start {
-    NSURL *url = [self urlWithHTTPMethod:self.httpMethod
+    NSString *httpMethod = [self httpMethod];
+    
+    NSURL *url = [self urlWithHTTPMethod:httpMethod
                                   scheme:TWAPIScheme
                                     host:TWAPIHost
-                            resourcePath:self.resourcePath
-                               getParams:self.getParams
-                              postParams:self.postParams];
+                            resourcePath:[self resourcePath]
+                               getParams:[self getParams]
+                              postParams:[self postParams]];
 
-    NSURLRequest *request = [NSURLRequest requestWithURL:url];
+    NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+
+    NSDictionary *headers = [self httpHeaders];
+    if (headers) {
+        [request setAllHTTPHeaderFields:headers];
+    }
+
+    if ([@"POST" isEqualToString:httpMethod]) {
+        NSData *postBody = [self postBody];
+        if (postBody) {
+            [request setHTTPBody:postBody];
+        }
+    }
     
     self.connection = [NSURLConnection connectionWithRequest:request
                                                     delegate:self];
@@ -164,7 +178,7 @@
     return nil;
 }
 
-- (NSDictionary*) headers {
+- (NSDictionary*) httpHeaders {
     return nil;
 }
 
@@ -173,6 +187,10 @@
 }
 
 -(NSString*) resourcePath {
+    return nil;
+}
+
+- (NSData*) postBody {
     return nil;
 }
 
