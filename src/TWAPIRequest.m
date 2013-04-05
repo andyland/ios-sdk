@@ -73,12 +73,14 @@
 
     NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
 
+    [request setHTTPMethod:[self httpMethod]];
+
     NSDictionary *headers = [self httpHeaders];
     if (headers) {
         [request setAllHTTPHeaderFields:headers];
     }
 
-    if ([@"POST" isEqualToString:httpMethod]) {
+    if ([TWAPIHTTPMethodPOST isEqualToString:httpMethod]) {
         NSData *postBody = [self postBody];
         if (postBody) {
             [request setHTTPBody:postBody];
@@ -132,20 +134,18 @@
                    getParams:(NSDictionary*)getParams
                   postParams:(NSDictionary*)postParams {
     NSMutableString *requestUrl = [NSMutableString stringWithFormat:@"%@://%@%@?", scheme, host, resourcePath];
-
-    [requestUrl appendFormat:@"apiKey=%@", TWAPIKey];
     
     NSString *timestamp = [NSString stringWithFormat:@"%u", (NSUInteger)[[NSDate date] timeIntervalSince1970]];
-    [requestUrl appendFormat:@"&ts=%@", timestamp];
+    [requestUrl appendFormat:@"ts=%@", timestamp];
+
+    [requestUrl appendFormat:@"&apiKey=%@", TWAPIKey];
     
-
-
-    NSMutableArray *paramValues = [NSMutableArray arrayWithObjects:TWAPIKey, timestamp, nil];
+    NSMutableArray *paramValues = [NSMutableArray arrayWithObjects:timestamp, TWAPIKey, nil];
     
     for (NSString *key in getParams) {
         NSString *value = [getParams valueForKey:key];
-        [paramValues addObject:key];
-        [requestUrl appendFormat:@"&%@=%@", key, value];
+        [paramValues addObject:value];
+        [requestUrl appendFormat:@"&%@=%@", key, [value stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
     }
     for (NSString *key in postParams) {
         [paramValues addObject:[postParams objectForKey:key]];
@@ -159,7 +159,7 @@
 - (NSString*) apiPassForHTTPMethod:(NSString*)method
                       resourcePath:(NSString*)resourcePath
                        paramValues:(NSArray*)paramValues {
-    NSMutableString *toHash = [NSMutableString string];//]WithFormat:@"%@\\n%@\\n", method, resourcePath];
+    NSMutableString *toHash = [NSMutableString stringWithFormat:@"%@\n%@\n", method, resourcePath];
     for (NSString *value in paramValues) {
         [toHash appendString:value];
     }

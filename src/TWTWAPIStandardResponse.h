@@ -1,8 +1,8 @@
 //
-//  TWAPI.h
+//  TWTWAPIStandardResponse.h
 //  ios-sdk
 //
-//  Created by Andrew McSherry on 4/3/13.
+//  Created by Andrew McSherry on 4/4/13.
 //  Copyright (c) 2013 TuneWiki, Inc.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
@@ -21,15 +21,12 @@
 
 #import <Foundation/Foundation.h>
 
-#define TWAPIKey @"YOUR_API_KEY"
-#define TWAPISecret @"YOUR_API_SECRET"
+@interface TWTWAPIStandardResponse : NSObject
 
-#define TWAPIResourceLyrics @"lyrics"
-#define TWAPIResourceSearch @"search"
+@property (nonatomic, assign) BOOL ok;
+@property (nonatomic, assign) BOOL acknowledged;
+@property (nonatomic, retain) NSError *error;
 
-#define TWAPIErrorDomain @"TWAPIErrorDomain"
++ (TWTWAPIStandardResponse*) responseWithJSON:(NSData*)json;
 
-#define TWAPIScheme @"http"
-#define TWAPIHTTPMethodGET @"GET"
-#define TWAPIHTTPMethodPOST @"POST"
-#define TWAPIHost @"twapi.tunewiki.com"
+@end

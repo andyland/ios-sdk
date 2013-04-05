@@ -23,7 +23,6 @@
 
 @interface NSString (Utilities)
 
-- (NSString*) urlEncodedString;
 - (NSString*) hmacStringWithSecret:(NSString*) secret;
 
 @end

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A11561F8170E90C100F2F532 /* TWTWAPIStandardResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = A11561F7170E90C100F2F532 /* TWTWAPIStandardResponse.m */; };
 		A121F3B617040C3C0089A145 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A121F3B517040C3C0089A145 /* UIKit.framework */; };
 		A121F3B817040C3C0089A145 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A121F3B717040C3C0089A145 /* Foundation.framework */; };
 		A121F3BA17040C3C0089A145 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A121F3B917040C3C0089A145 /* CoreGraphics.framework */; };
@@ -26,9 +27,13 @@
 		A131180F170C1FFB009EF5A8 /* TWAPILyricRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A131180E170C1FFB009EF5A8 /* TWAPILyricRequest.m */; };
 		A1311815170C2BEA009EF5A8 /* TWAPIGetLyricsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A1311814170C2BEA009EF5A8 /* TWAPIGetLyricsRequest.m */; };
 		A1311818170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A1311817170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.m */; };
+		A1C6068F170F64860071290D /* TWAPISearchRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C6068E170F64860071290D /* TWAPISearchRequest.m */; };
+		A1C606AD170F71EC0071290D /* TWAPISearchResult.m in Sources */ = {isa = PBXBuildFile; fileRef = A1C606AC170F71EC0071290D /* TWAPISearchResult.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A11561F6170E90C100F2F532 /* TWTWAPIStandardResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWTWAPIStandardResponse.h; path = src/TWTWAPIStandardResponse.h; sourceTree = "<group>"; };
+		A11561F7170E90C100F2F532 /* TWTWAPIStandardResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWTWAPIStandardResponse.m; path = src/TWTWAPIStandardResponse.m; sourceTree = "<group>"; };
 		A121F3B217040C3C0089A145 /* ios-sdk.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "ios-sdk.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		A121F3B517040C3C0089A145 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		A121F3B717040C3C0089A145 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -60,6 +65,10 @@
 		A1311816170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPIPostLyricsRequest.h; path = src/TWAPIPostLyricsRequest.h; sourceTree = "<group>"; };
 		A1311817170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAPIPostLyricsRequest.m; path = src/TWAPIPostLyricsRequest.m; sourceTree = "<group>"; };
 		A1311819170C3150009EF5A8 /* TWAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPI.h; path = src/TWAPI.h; sourceTree = "<group>"; };
+		A1C6068D170F64850071290D /* TWAPISearchRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPISearchRequest.h; path = src/TWAPISearchRequest.h; sourceTree = "<group>"; };
+		A1C6068E170F64860071290D /* TWAPISearchRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAPISearchRequest.m; path = src/TWAPISearchRequest.m; sourceTree = "<group>"; };
+		A1C606AB170F71EC0071290D /* TWAPISearchResult.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = TWAPISearchResult.h; path = src/TWAPISearchResult.h; sourceTree = "<group>"; };
+		A1C606AC170F71EC0071290D /* TWAPISearchResult.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = TWAPISearchResult.m; path = src/TWAPISearchResult.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +168,12 @@
 				A1311816170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.h */,
 				A1311817170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.m */,
 				A1311819170C3150009EF5A8 /* TWAPI.h */,
+				A11561F6170E90C100F2F532 /* TWTWAPIStandardResponse.h */,
+				A11561F7170E90C100F2F532 /* TWTWAPIStandardResponse.m */,
+				A1C6068D170F64850071290D /* TWAPISearchRequest.h */,
+				A1C6068E170F64860071290D /* TWAPISearchRequest.m */,
+				A1C606AB170F71EC0071290D /* TWAPISearchResult.h */,
+				A1C606AC170F71EC0071290D /* TWAPISearchResult.m */,
 			);
 			name = src;
 			sourceTree = "<group>";
@@ -241,6 +256,9 @@
 				A131180F170C1FFB009EF5A8 /* TWAPILyricRequest.m in Sources */,
 				A1311815170C2BEA009EF5A8 /* TWAPIGetLyricsRequest.m in Sources */,
 				A1311818170C2F5C009EF5A8 /* TWAPIPostLyricsRequest.m in Sources */,
+				A11561F8170E90C100F2F532 /* TWTWAPIStandardResponse.m in Sources */,
+				A1C6068F170F64860071290D /* TWAPISearchRequest.m in Sources */,
+				A1C606AD170F71EC0071290D /* TWAPISearchResult.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

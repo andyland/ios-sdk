@@ -1,9 +1,9 @@
 //
-//  TWAPILyricRequest.h
+//  TWAPISearchRequest.h
 //  ios-sdk
 //
-//  Created by Andrew McSherry on 4/3/13.
-//  Copyright (c) 2013 TuneWiki, Inc.
+//  Created by Andrew McSherry on 4/5/13.
+//  Copyright (c) 2013 TuneWiki, Inc. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated
 //  documentation files (the "Software"), to deal in the Software without restriction, including without limitation the
@@ -20,18 +20,27 @@
 //
 
 #import <Foundation/Foundation.h>
-
 #import "TWAPIRequest.h"
 
-@interface TWAPILyricRequest : TWAPIRequest
+@interface TWAPISearchRequest : TWAPIRequest
 
-@property (nonatomic, copy) NSString *artist;
-@property (nonatomic, copy) NSString *title;
-@property (nonatomic, copy) NSString *language;
++ (TWAPISearchRequest*) songsSearchRequestForLyrics:(NSString*)lyrics
+                                           delegate:(id<TWAPIDelegate>)delegate;
 
-- (id) initWithArtist:(NSString*)artist
-                title:(NSString*)title
-             language:(NSString*)language
-             delegate:(id<TWAPIDelegate>)delegate;
++ (TWAPISearchRequest*) songsSearchRequestForTitle:(NSString*)title
+                                          delegate:(id<TWAPIDelegate>)delegate;
+
++ (TWAPISearchRequest*) songsSearchRequestForArtist:(NSString*)artist
+                                              title:(NSString*)title
+                                           delegate:(id<TWAPIDelegate>)delegate;
+
++ (TWAPISearchRequest*) artistsSearchRequestForArtist:(NSString*)artist
+                                             delegate:(id<TWAPIDelegate>)delegate;
+
++ (TWAPISearchRequest*) commentsSearchRequestForHashtag:(NSString*)hashtag
+                                               delegate:(id<TWAPIDelegate>)delegate;
+
++ (TWAPISearchRequest*) commentsSearchRequestForText:(NSString*)text
+                                            delegate:(id<TWAPIDelegate>)delegate;
 
 @end

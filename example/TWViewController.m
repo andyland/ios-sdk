@@ -25,7 +25,7 @@
 
 @interface TWViewController ()
 
-@property (nonatomic, retain) TWAPIGetLyricsRequest *request;
+@property (nonatomic, retain) TWAPIRequest *request;
 @property (nonatomic, retain) TWAPILyrics *lyrics;
 
 @end
@@ -44,8 +44,6 @@
                                                            language:@"en-US"
                                                            delegate:self];
     [self.request start];
-    //twapi.apiKey = @"27debafffd84567dea20a504106a9577";
-    //twapi.apiSecret = @"83fc6907ba1d1903ecbc694f1d6c931d";
 }
 
 - (void) dealloc {

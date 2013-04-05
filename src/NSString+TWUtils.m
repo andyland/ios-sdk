@@ -33,15 +33,6 @@
 
 @implementation NSString (Utilities)
 
-- (NSString *) urlEncodedString {
-    NSString *result = (NSString *)CFURLCreateStringByAddingPercentEscapes(NULL,
-																		   (CFStringRef)self,
-																		   NULL,
-																		   (CFStringRef)@";/?:@&=$+{}<>,",
-																		   kCFStringEncodingUTF8);
-    return [result autorelease];
-}
-
 - (NSString*) hmacStringWithSecret:(NSString*) secret {
     CCHmacContext ctx;
     const char *key = [secret UTF8String];
